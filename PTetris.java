@@ -7,25 +7,29 @@ import processing.core.PApplet;
  * Time: 11:13:41 AM
  * To change this template use File | Settings | File Templates.
  */
-public class Embedded extends PApplet {
+public class PTetris extends PApplet {
 
     //	An array of stripes
-    Stripe[] stripes = new Stripe[2];
+    Piece[] pieces = new Piece[10];
+    int k = 0;
 
     public void setup() {
-        size(200, 200);
+        size(200, 400);
+        newPiece();
         // Initialize all "stripes"
-        for (int i = 0; i < stripes.length; i++) {
-            stripes[i] = new Stripe(this);
-        }
+    }
+
+    public void newPiece() {
+        pieces[k] = new Piece(this);
+        k = k + 1;
     }
 
     public void draw() {
         background(100);
         // Move and display all "stripes"
-        for (int i = 0; i < stripes.length; i++) {
-            stripes[i].move();
-            stripes[i].display();
+        for (int j = 0 ; j < k ; j++) {
+            pieces[j].move();
+            pieces[j].display();
         }
     }
 
