@@ -22,6 +22,14 @@ public class TetrisGUI extends Frame {
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
         embed.init();
+        setSize(400,500);
 
+        setVisible(true);
+    }
+
+    public static void main(String args[]) {
+        TetrisGUI g = new TetrisGUI();
     }
 }
+
+

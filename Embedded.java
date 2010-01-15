@@ -9,22 +9,30 @@ import processing.core.PApplet;
  */
 public class Embedded extends PApplet {
 
-     public void setup() {
-         // original setup code here ...
-         size(400, 400);
+    //	An array of stripes
+    Stripe[] stripes = new Stripe[2];
 
-         // prevent thread from starving everything else
-         noLoop();
-     }
+    public void setup() {
+        size(200, 200);
+        // Initialize all "stripes"
+        for (int i = 0; i < stripes.length; i++) {
+            stripes[i] = new Stripe(this);
+        }
+    }
 
-     public void draw() {
-         // drawing code goes here
-     }
+    public void draw() {
+        background(100);
+        // Move and display all "stripes"
+        for (int i = 0; i < stripes.length; i++) {
+            stripes[i].move();
+            stripes[i].display();
+        }
+    }
 
-     public void mousePressed() {
-         // do something based on mouse movement
+    public void mousePressed() {
+        // do something based on mouse movement
 
-         // update the screen (run draw once)
-         redraw();
-     }
+        // update the screen (run draw once)
+        redraw();
+    }
 }
