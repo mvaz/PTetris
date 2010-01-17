@@ -9,43 +9,30 @@ import processing.core.PApplet;
  */
 public class Piece {
 
-    float x;
-    float y;
-    float width;
-    float height;
-    float speed;
+    private float x;
+    private float y;
 
      // The parent PApplet that we will render ourselves onto
     PTetris parent;
 
-    public Piece(PTetris p) {
-        parent = p;
-        speed = parent.random(0,1);
-        width = 20;
-        height = 20;
-        
-        x = parent.random(0, parent.width);
-        y = 0;
+    public Piece(float x, float y) {
+        this.x = x;
+        this.y = y;
     }
 
-    // Draw stripe
-    void display() {
-        parent.fill(255, 100);
-        parent.noStroke();
-        parent.rect(x, y, width, height);
+    public float getX() {
+        return x;
     }
+
+    public float getY() {
+        return y;
+    }
+
 
     // Move stripe
-    void move() {
-        System.out.println( y );
-//        do {
+    void moveDown(float speed) {
         y += speed;
-        if( y >= (parent.height - height) ) {
-//            TODO add object to grid
-            if (speed > 0)
-                parent.newPiece();
-            speed = 0;
-        }
+//        System.out.println( y );
 //        if (x > parent.width + 20) x = -20;
         System.out.println( y + " < " + parent.height );
     }
