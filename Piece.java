@@ -34,6 +34,6 @@ public class Piece {
         y += speed;
 //        System.out.println( y );
 //        if (x > parent.width + 20) x = -20;
-        System.out.println( y + " < " + parent.height );
+//        System.out.println( y + " < " + parent.height );
     }
 }

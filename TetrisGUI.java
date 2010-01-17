@@ -27,7 +27,7 @@ public class TetrisGUI extends JFrame {
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
         embed.init();
-        setSize(400, 500);
+        setSize(200, 400);
 
         setVisible(true);
     }

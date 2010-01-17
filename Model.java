@@ -14,19 +14,45 @@ public class Model {
 
     PTetris parent;
     Piece currentPiece;
-    
+
+    /**
+     *
+     * @param parent
+     * @param numberColumns
+     * @param numberRows
+     */
     public Model(PTetris parent, int numberColumns, int numberRows) {
         this.numberColumns = numberColumns;
         this.numberRows = numberRows;
         this.parent = parent;
 
         grid = new Matrix( this.numberColumns, this.numberRows);
+        newPiece();
     }
 
+    /**
+     *
+     */
+    private void newPiece() {
+        float x = (float) Math.floor( parent.random( 0, numberColumns) );
+        System.out.println( x );
+        float y = (float) 0;
+        currentPiece = new Piece( x, y);
+//        System.out.println("called newPiece()");
+    }
+
+    /**
+     * 
+     * @param speed
+     */
     public void setSpeed(float speed) {
         this.speed = speed;
     }
 
+
+    /**
+     *
+     */
     public void draw() {
         // draw grid
         for (int c=0; c < this.numberColumns ; c++ )
@@ -40,12 +66,10 @@ public class Model {
         
     }
 
-    public void newPiece() {
-        float x = (float) Math.floor( parent.random( 0, numberColumns) );
-        float y = (float) numberRows;
-        currentPiece = new Piece( x, y);
-    }
 
+    /**
+     * 
+     */
     public void update() {
         // move the current piece down
         currentPiece.moveDown( speed );

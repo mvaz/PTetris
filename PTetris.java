@@ -11,7 +11,6 @@ import processing.core.PApplet;
 public class PTetris extends PApplet {
 
     //	An array of stripes
-    Piece[] pieces = new Piece[10];
     private int numberColumns = 10;
     private int numberRows = 30;
     private float columnWidth;
@@ -21,58 +20,80 @@ public class PTetris extends PApplet {
 
     int k = 0;
 
-    public PTetris() {
-        columnWidth = width / numberColumns;
-        rowHeight   = width / numberColumns;
-        model = new Model( this, numberColumns, numberRows);
-    }
-
     public void setup() {
         size(200, 400);
-//        newPiece();
-        // Initialize all "stripes"
+        // recompute
+        columnWidth = width / (float) numberColumns;
+        rowHeight = height / (float) numberRows;
+
+        model = new Model(this, numberColumns, numberRows);
+        model.setSpeed((float) 1.0);
     }
 
-
-    public void update() {
-        model.update();
-    }
 
     public void draw() {
         background(100);
+
         drawGrid();
+
+        model.update();
         model.draw();
+        
+        if (keyPressed) {
+            System.out.println(key);
+        }
+    }
+
+    public void redraw() {
+        columnWidth = width / (float) numberColumns;
+        rowHeight = height / (float) numberRows;
     }
 
     /**
      * Plots the grid of lines and rows.
      */
     public void drawGrid() {
-        for (int c = 1; c < numberColumns ; c++) {
+        for (int c = 1; c < numberColumns; c++) {
             stroke(0xFFCCFF00);
-            line( c * width / numberColumns, 0, c * width / numberColumns, height );
+            line(c * columnWidth, 0, c * columnWidth, height);
         }
 
-        for (int l = 1; l < numberRows ; l++) {
+        for (int l = 1; l < numberRows; l++) {
             stroke(0xFFCCFF00);
-            line( 0, l * height / numberRows, width, l * height / numberRows );
+            line(0, l * rowHeight, width, l * rowHeight);
         }
     }
 
-    // Draw stripe
-
     /**
      * Draws a piece falling down
+     *
      * @param p the piece to be drawn
      */
     void drawPiece(Piece p) {
         fill(255, 100);
         noStroke();
-        rect(p.getX(), p.getY(), columnWidth, rowHeight);
+        rect(p.getX() * columnWidth, p.getY(), columnWidth, rowHeight);
     }
 
 
+    public void keyPressed() {
+        System.out.println(key);
+//        if (key == 0) {
+//            value = 255;
+//        } else {
+//            value = 0;
+//        }
+    }
+
+    /**
+     * Draws the rectangle corresponding to the grid...
+     *
+     * @param c column number
+     * @param l
+     * @param i
+     */
     public void draw(int c, int l, int i) {
-         rect(c * columnWidth, l * rowHeight, columnWidth, rowHeight);
+        fill(i, 100);
+        rect(c * columnWidth, l * rowHeight, columnWidth, rowHeight);
     }
 }
