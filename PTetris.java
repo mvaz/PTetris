@@ -18,8 +18,6 @@ public class PTetris extends PApplet {
 
     Model model;
 
-    int k = 0;
-
     public void setup() {
         size(200, 400);
         // recompute
@@ -31,6 +29,7 @@ public class PTetris extends PApplet {
     }
 
 
+    // the draw function that takes care of visualization
     public void draw() {
         background(100);
 
@@ -44,6 +43,7 @@ public class PTetris extends PApplet {
         }
     }
 
+    // not really sure what this is for...
     public void redraw() {
         columnWidth = width / (float) numberColumns;
         rowHeight = height / (float) numberRows;
