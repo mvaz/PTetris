@@ -37,13 +37,14 @@ public class PTetris extends PApplet {
 
         model.update();
         model.draw();
-        
+
         if (keyPressed) {
             System.out.println(key);
         }
     }
 
     // not really sure what this is for...
+
     public void redraw() {
         columnWidth = width / (float) numberColumns;
         rowHeight = height / (float) numberRows;
@@ -76,13 +77,25 @@ public class PTetris extends PApplet {
     }
 
 
+//    public void keyPressed() {
+//        System.out.println("Key pressed was: " + key);
+////        if (key == 0) {
+////            value = 255;
+////        } else {
+////            value = 0;
+////        }
+//    }
+
     public void keyPressed() {
-        System.out.println(key);
-//        if (key == 0) {
-//            value = 255;
-//        } else {
-//            value = 0;
-//        }
+        System.out.println("pressed " + key + " " + keyCode );
+    }
+
+    public void keyTyped() {
+        System.out.println( "typed " + key + " " + keyCode);
+    }
+
+    public void keyReleased() {
+        System.out.println( "released " + key + " " + keyCode );
     }
 
     /**

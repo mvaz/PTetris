@@ -15,6 +15,10 @@ public class Model {
     PTetris parent;
     Piece currentPiece;
 
+
+    
+
+
     /**
      *
      * @param parent
