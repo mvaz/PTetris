@@ -16,11 +16,7 @@ public class Model {
     Piece currentPiece;
 
 
-    
-
-
     /**
-     *
      * @param parent
      * @param numberColumns
      * @param numberRows
@@ -30,7 +26,7 @@ public class Model {
         this.numberRows = numberRows;
         this.parent = parent;
 
-        grid = new Matrix( this.numberColumns, this.numberRows);
+        grid = new Matrix(this.numberColumns, this.numberRows);
         newPiece();
     }
 
@@ -38,15 +34,14 @@ public class Model {
      *
      */
     private void newPiece() {
-        float x = (float) Math.floor( parent.random( 0, numberColumns) );
-        System.out.println( x );
-        float y = (float) 0;
-        currentPiece = new Piece( x, y);
+        int x = (int) Math.floor(parent.random(0, numberColumns));
+        System.out.println(x);
+        int y = (int) 0;
+        currentPiece = new Piece(x, y);
 //        System.out.println("called newPiece()");
     }
 
     /**
-     * 
      * @param speed
      */
     public void setSpeed(float speed) {
@@ -59,24 +54,24 @@ public class Model {
      */
     public void draw() {
         // draw grid
-        for (int c=0; c < this.numberColumns ; c++ )
-            for (int l=0; c < this.numberRows ; c++ )
+        for (int c = 0; c < this.numberColumns; c++)
+            for (int l = 0; c < this.numberRows; c++)
 //                if (grid.getElement(c,l) > 0.0)
-                if (grid.getElement(l,c) > 0.0)
+                if (grid.getElement(l, c) > 0.0)
                     // draw it!
-                    parent.draw( c, l, 1);
+                    parent.draw(c, l, 1);
 
         parent.drawPiece(currentPiece);
-        
+
     }
 
 
     /**
-     * 
+     *
      */
     public void update() {
         // move the current piece down
-        currentPiece.moveDown( speed );
+        currentPiece.moveDown(speed);
 
         // check whether the current piece has reached the end
 //        currentPiece.
@@ -86,5 +81,23 @@ public class Model {
 //                parent.newPiece();
 //            speed = 0;
 //        }
+    }
+
+    public void moveLeft() {
+//        System.out.println("Left");
+        currentPiece.setX( currentPiece.getX() - 1);
+    }
+
+    public void moveRight() {
+//        System.out.println("Right");
+        currentPiece.setX( currentPiece.getX() + 1);
+    }
+
+    public void changeConfiguration() {
+        System.out.println("Change");
+    }
+
+    public void moveDown() {
+        System.out.println("Down");
     }
 }

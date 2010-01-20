@@ -9,22 +9,19 @@ import processing.core.PApplet;
  */
 public class Piece {
 
-    private float x;
-    private float y;
+    private int x;
+    private int y;
 
-     // The parent PApplet that we will render ourselves onto
-    PTetris parent;
-
-    public Piece(float x, float y) {
+    public Piece(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public float getX() {
+    public int getX() {
         return x;
     }
 
-    public float getY() {
+    public int getY() {
         return y;
     }
 
@@ -35,5 +32,10 @@ public class Piece {
 //        System.out.println( y );
 //        if (x > parent.width + 20) x = -20;
 //        System.out.println( y + " < " + parent.height );
+    }
+
+    public void setX(int v) {
+        //To change body of created methods use File | Settings | File Templates.
+        this.x = v;
     }
 }

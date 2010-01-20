@@ -87,7 +87,12 @@ public class PTetris extends PApplet {
 //    }
 
     public void keyPressed() {
-        System.out.println("pressed " + key + " " + keyCode );
+        switch (keyCode) {
+            case 37:  model.moveLeft(); break;
+            case 39:  model.moveRight(); break;
+            case 38:  model.changeConfiguration(); break;
+            case 40:  model.moveDown(); break;
+        }
     }
 
     public void keyTyped() {
