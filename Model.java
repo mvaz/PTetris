@@ -64,7 +64,7 @@ public class Model {
                     if (grid.getElement(l, c) > eps)
                         // draw it!
 //                        parent.draw(c, l, 1);
-                        parent.drawRectangle(l, c, 1);
+                        parent.drawRectangle(c, l, 1);
                 } catch (java.lang.ArrayIndexOutOfBoundsException e) {
                     System.out.println("C: " + c + " - l: " + l);
                 }
@@ -81,9 +81,11 @@ public class Model {
         currentPiece.moveDown(speed);
 
         // check whether the current piece has reached the end
-        System.out.println( " >" + currentPiece.getY() + " >= " + ( grid.getNrow() - 1) );
         if (currentPiece.getY() >= grid.getNrow() - 1) {
-            grid.setElement(currentPiece.getX(), (int) currentPiece.getY(), 1.0);
+            System.out.println( " >" + currentPiece.getY() + " >= " + ( grid.getNrow() - 1) );
+            System.out.println( " >" + currentPiece.getX() + " >= " + ( grid.getNcol() - 1) );
+
+            grid.setElement( (int) Math.floor( currentPiece.getY() ), currentPiece.getX(), 1.0);
             newPiece();
         }
 
