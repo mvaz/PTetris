@@ -26,7 +26,9 @@ public class Model {
         this.numberRows = numberRows;
         this.parent = parent;
 
-        grid = new Matrix(this.numberColumns, this.numberRows);
+        grid = new Matrix(this.numberRows, this.numberColumns);
+        grid.setElement(1,1,167);
+        
         newPiece();
     }
 
@@ -36,9 +38,8 @@ public class Model {
     private void newPiece() {
         int x = (int) Math.floor(parent.random(0, numberColumns));
         System.out.println(x);
-        int y = (int) 0;
+        int y = 0;
         currentPiece = new Piece(x, y);
-//        System.out.println("called newPiece()");
     }
 
     /**
@@ -54,16 +55,23 @@ public class Model {
      */
     public void draw() {
         // draw grid
+        float eps = (float) 1.0e-8;
         for (int c = 0; c < this.numberColumns; c++)
-            for (int l = 0; c < this.numberRows; c++)
-//                if (grid.getElement(c,l) > 0.0)
-                if (grid.getElement(l, c) > 0.0)
-                    // draw it!
-                    parent.draw(c, l, 1);
+            for (int l = 0; l < this.numberRows; l++) {
+
+                try {
+                    if (grid.getElement(l, c) > eps)
+                        // draw it!
+//                        parent.draw(c, l, 1);
+                        parent.drawRectangle(l, c, 1);
+                } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+                    System.out.println("C: " + c + " - l: " + l);
+                }
+            }
 
         parent.drawPiece(currentPiece);
-
     }
+
 
 
     /**
@@ -74,6 +82,12 @@ public class Model {
         currentPiece.moveDown(speed);
 
         // check whether the current piece has reached the end
+        if (currentPiece.getY() >= grid.getNrow() - 1) {
+            grid.setElement((int) currentPiece.getY(), currentPiece.getX(), 1.0);
+            newPiece();
+        }
+
+//        System.out.println( currentPiece.getY() );
 //        currentPiece.
 //        if( y >= (parent.height - height) ) {
 //            TODO add object to grid
@@ -84,13 +98,11 @@ public class Model {
     }
 
     public void moveLeft() {
-//        System.out.println("Left");
-        currentPiece.setX( currentPiece.getX() - 1);
+        currentPiece.setX(currentPiece.getX() - 1);
     }
 
     public void moveRight() {
-//        System.out.println("Right");
-        currentPiece.setX( currentPiece.getX() + 1);
+        currentPiece.setX(currentPiece.getX() + 1);
     }
 
     public void changeConfiguration() {

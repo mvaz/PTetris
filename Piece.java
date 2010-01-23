@@ -10,9 +10,9 @@ import processing.core.PApplet;
 public class Piece {
 
     private int x;
-    private int y;
+    private float y;
 
-    public Piece(int x, int y) {
+    public Piece(int x, float y) {
         this.x = x;
         this.y = y;
     }
@@ -21,7 +21,7 @@ public class Piece {
         return x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 
