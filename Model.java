@@ -28,6 +28,7 @@ public class Model {
 
         grid = new Matrix(this.numberRows, this.numberColumns);
         grid.setElement(1,1,167);
+        grid.setElement(9,1,  1);
         
         newPiece();
     }
@@ -72,8 +73,6 @@ public class Model {
         parent.drawPiece(currentPiece);
     }
 
-
-
     /**
      *
      */
@@ -82,8 +81,9 @@ public class Model {
         currentPiece.moveDown(speed);
 
         // check whether the current piece has reached the end
+        System.out.println( " >" + currentPiece.getY() + " >= " + ( grid.getNrow() - 1) );
         if (currentPiece.getY() >= grid.getNrow() - 1) {
-            grid.setElement((int) currentPiece.getY(), currentPiece.getX(), 1.0);
+            grid.setElement(currentPiece.getX(), (int) currentPiece.getY(), 1.0);
             newPiece();
         }
 
