@@ -26,7 +26,7 @@ public class Model {
         this.numberRows = numberRows;
         this.parent = parent;
 
-        grid = new Matrix(this.numberRows, this.numberColumns);
+        grid = new Matrix(this.numberColumns, this.numberRows);
         grid.setElement(1,1,167);
         grid.setElement(9,1,  1);
         
@@ -61,7 +61,7 @@ public class Model {
             for (int l = 0; l < this.numberRows; l++) {
 
                 try {
-                    if (grid.getElement(l, c) > eps)
+                    if (grid.getElement(c, l) > eps)
                         // draw it!
 //                        parent.draw(c, l, 1);
                         parent.drawRectangle(c, l, 1);
@@ -81,11 +81,11 @@ public class Model {
         currentPiece.moveDown(speed);
 
         // check whether the current piece has reached the end
-        if (currentPiece.getY() >= grid.getNrow() - 1) {
-            System.out.println( " >" + currentPiece.getY() + " >= " + ( grid.getNrow() - 1) );
-            System.out.println( " >" + currentPiece.getX() + " >= " + ( grid.getNcol() - 1) );
-
-            grid.setElement( (int) Math.floor( currentPiece.getY() ), currentPiece.getX(), 1.0);
+        if (currentPiece.getY() >= this.numberRows - 1) {
+//            System.out.println( " >" + currentPiece.getY() + " >= " + ( grid.getNrow() - 1) );
+//            System.out.println( " >" + currentPiece.getX() + " >= " + ( grid.getNcol() - 1) );
+//
+            grid.setElement( currentPiece.getX(), (int) Math.floor( currentPiece.getY() ), 1.0);
             newPiece();
         }
 
